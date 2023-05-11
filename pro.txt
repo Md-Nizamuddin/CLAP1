@@ -1,0 +1,285 @@
+QUESTION 1:
+AIM: To print the mirror image of a given string
+
+CODE:
+str1=input("Enter a string:") 
+str2=''
+ind=-1
+for i in str1: 
+str2+=str1[ind] 
+ind-=1
+print(f"The given string = {str1}\nThe Reversed string = {str2}")
+
+OUTPUT:
+Enter a string:python
+The given string = python 
+The Reversed string = nohtyp 
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 2:
+AIM: Python program to check if two strings are rotationally equal.
+
+CODE:
+str1=input("Enter string1:") 
+str2=input("Enter string2:") 
+print("String 1 is:"+str(str1))
+print("String 2 is:"+str(str2)) 
+res=False
+for i in range(len(str1)):
+if str1[i: ]+str1[ :i]==str2: 
+res = True
+break
+if res:
+print("Yes,they are rotationally equal") 
+else:
+print("No,they are not rotationally equal")
+OUTPUT:
+Enter string1:pyi 
+Enter string2:yip 
+String 1 is:pyi
+String 2 is:yip
+Yes,they are rotationally equal
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 3:
+AIM: To generate a random binary string of length n.
+
+CODE:
+import random 
+n=int(input("Enter length:")) 
+stri=""
+for i in range(n):
+temp = str(random.randint(0,1)) 
+stri+=temp
+print(stri)
+
+OUTPUT:
+Enter length:4 
+1001 
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 4:
+AIM: Given a string, remove punctuation and any special characters
+
+CODE:
+a=input("Enter the string:")
+punctuation='''!()-[]{;}:'"\,<>./?@#$%^&*_~''' 
+for i in a:
+if i in punctuation: 
+a=a.replace(i," ")
+print(a)
+OUTPUT:
+Enter the string:Hi!Hello#You? 
+Hi Hello You
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 5:
+AIM: Write a Python program to compute the element-wise sum of given tuples.
+
+CODE:
+tuple1=() 
+list1=[]
+n=int(input("Enter the size of tuple1:")) 
+for i in range(n):
+ele=int(input("Enter the elements for tuple 1:")) 
+list1.append(ele)
+tuple1=tuple(list1) 
+tuple2=()
+list2=[]
+n=int(input("Enter the size of tuple 2:")) 
+for i in range(n):
+ele=int(input("Enter the elements for tuple 2:"))
+list2.append(ele) 
+tuple2=tuple(list2) 
+tuple3=()
+list3=[]
+n=int(input("Enter the size of tuple 3:")) 
+for i in range(n):
+ele=int(input("Enter the elements for tuple 3:")) 
+list3.append(ele)
+tuple3=tuple(list3) 
+res_tuple=tuple(map(sum,zip(tuple1,tuple2,tuple3))) 
+print(res_tuple)
+
+OUTPUT:
+Enter the size of tuple1:3
+Enter the elements for tuple 1:10 
+Enter the elements for tuple 1:20 
+Enter the elements for tuple 1:30 
+Enter the size of tuple 2:3
+Enter the elements for tuple 2:40 
+Enter the elements for tuple 2:50 
+Enter the elements for tuple 2:60 
+Enter the size of tuple 3:3
+Enter the elements for tuple 3:70 
+Enter the elements for tuple 3:80 
+Enter the elements for tuple 3:90 
+(120, 150, 180)
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 6:
+AIM: Write a Python program to remove an empty tuple(s) from a list of tuples
+
+CODE:
+List1 = [(), (), ('',), ('c', 'd'), ('m', 'n', 'o')]
+List1 = [i for i in List1 if i] 
+print(List1)
+
+OUTPUT:
+[('',), ('c', 'd'), ('m', 'n', 'o')]
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 7:
+AIM: Write a Python program to count the elements in a list until an element is a tuple
+
+CODE:
+nums=[3,(101,50),(9,),1]
+c=0
+for i in nums:
+if isinstance(i,tuple): 
+c+=1
+print(c)
+
+OUTPUT:
+2
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 8:
+AIM:Write a Python program to Convert Tuple Matrix to Tuple List
+
+CODE:
+test=[[(9, 51),(7, 9)],[(11, 1),(22, 19)]]
+print("The original list is : " + str(test))
+num = [ele for sub in test for ele in sub] 
+res = list(zip(*num))
+print("The converted tuple list : " + str(res))
+
+OUTPUT:
+The original list is : [[(9, 51), (7, 9)], [(11, 1), (22, 19)]]
+The converted tuple list : [(9, 7, 11, 22), (51, 9, 1, 19)]
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 9:
+AIM: Write a python program to count unique values in the list
+
+CODE:
+L = [25,9,0,9,3,0]
+print(L) 
+L1=[]
+c=0
+for i in L:
+if i not in L1: 
+c+=1
+L1.append(i)
+print(f"Number of unique items are:{c}",)
+
+OUTPUT:
+[25, 9, 0, 9, 3, 0]
+Number of unique items are:4
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 10:
+AIM: Python Program to print all Possible Combinations from the three Digits
+
+CODE:
+def combination(L): 
+for i in range(3):
+for j in range(3): 
+for k in range(3):
+if (i!=j and j!=k and i!=k): 
+print(L[i], L[j], L[k])
+combination([3,5,7])
+
+OUTPUT:
+3 5 7
+3 7 5
+5 3 7
+5 7 3
+7 3 5
+7 5 3
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 11:
+AIM: To write a Python program (using function) to print the even numbers from a given 
+list.
+CODE:
+L=[8,9,7,80,95,2]
+def printeven(l): 
+for i in l:
+if i%2==0: 
+print(i,end=" ")
+printeven(L)
+OUTPUT:
+8 80 2
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 12:
+AIM: Write a Python function (using function) that checks whether a passed string is 
+palindrome or not.
+
+CODE:
+def palin(s): 
+if len(s)<1:
+return True 
+else:
+if s[0]==s[-1]:
+return palin(s[1:-1]) 
+else:
+return False 
+a=str(input("Enter string:")) 
+if(palin(a)==True):
+print("String is a palindrome!") 
+else:
+print("String isn't a palindrome!")
+
+OUTPUT:
+Enter string:ava
+String is a palindrome!
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 13:
+AIM: To write a Python function (using function) that checks whether a given number is 
+prime or not.
+
+CODE:
+num=int(input("Enter a number:")) 
+def isprime(n):
+if n>1:
+for i in range(2,int(n/2)+1): 
+if(n%i)==0:
+print(n,"is not a prime number") 
+break
+else:
+print(n,"is a prime number")
+else:
+print(n, "is not a prime number") 
+isprime(num)
+OUTPUT:
+Enter a number:7
+7 is a prime number
+RESULT:
+Thus, the given program is executed successfull

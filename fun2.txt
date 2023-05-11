@@ -1,0 +1,187 @@
+QUESTION 1:
+Calculate the following using Lambda calculus:
+a. T AND F
+b. 3 * 4
+
+CODE:
+y=lambda s: s and False 
+print("T AND F = ",y(True)) 
+x = lambda a : a*4 
+print("3*4= ",x(3))
+
+OUTPUT:
+T AND F = False 
+3*4= 12 
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 2:
+a. Write a lambda function to convert measurements from meters to feet.
+
+CODE:
+x=lambda x:3.281*x 
+print("Answer is: ",x(91))
+
+OUTPUT:
+Answer is: 298.571
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 3:
+Passing and returning a function as an argument
+Define a function ‘square’ for squaring a number. Define a function named ‘twice’ that takes a function f 
+as an argument and returns f(f(x)). Using ‘twice’ and ‘square’ create a function ‘quad’ that takes n as an 
+argument and returns n4 . ‘quad’ should not be defined explicitly. It should only be created as a variable 
+which is then assigned a function.
+
+CODE:
+def square(number): 
+value=number*number 
+return value
+def twice(func,num):
+return func(func(num)) 
+a=int(input('enter a number:')) 
+b=twice(square,a)
+print(b)
+
+OUTPUT:
+enter a number:9 
+6561
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 4:
+Closure
+A Closure is a function object that remembers values in enclosing scopes even if they are not present in 
+memory. We have a closure in Python when a nested function references a value in its enclosing scope. 
+
+CODE:
+def smart(fun): 
+def inner(a,b):
+if a<b: 
+a,b=b,a
+return fun(a,b) 
+return inner
+@smart
+def div(a,b): 
+print(a/b)
+div(2,4) 
+
+OUTPUT: 
+2.0
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 5:
+
+
+a. Study the following program by executing it:
+
+CODE:
+def multiplier_of(n):
+def multiplier(number):
+return number*n 
+return multiplier
+multiplywith5 = multiplier_of(5) 
+print(multiplywith5(9)) 
+
+OUTPUT:
+45
+
+
+b. In a lottery system, random number is chosen by retrieving the number from a 
+random index from a list of random numbers. Write a program to choose a random 
+number in this way. You must use nested functions – the inner function chooses a number 
+from a random index and the outer function generates a random list of numbers. The outer 
+function takes n as a parameter where is the maximum number that can be put in the 
+random list. (Your code should be similar to the program in 5a)
+
+
+CODE:
+import random
+m=10
+print("Let the maximum Limit for generating random numbers be "+str(m)) 
+lst=[]
+for i in range(m): 
+lst.append(random.randint(1,m)) 
+for j in range(1):
+d1=random.randrange(0,m,1)
+print("Index of the random number is ",lst[d1])
+
+
+OUTPUT:
+Let the maximum Limit for generating random numbers be 10 
+Index of the random number is 7
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 6:
+Map
+A secret message needs to be sent. Use the map function to encrypt the message using Caesar cipher.
+
+CODE:
+def encrypt(text,s): 
+result=""
+for i in range(len(text)): 
+char=text[i]
+if(char.isupper()):
+result+=chr((ord(char)+s-65)%26+65) 
+else:
+result+=chr((ord(char)+s-97)%26+97) 
+return result
+text="ATTACKATONCE"
+s=4
+print('Text: '+text) 
+print('shift: '+str(s))
+print('cipher: '+encrypt(text,s))
+
+OUTPUT:
+Text: ATTACKATONCE
+shift: 4
+cipher: EXXEGOEXSRGI
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 7:
+Reduce
+Given runs scored by 2 players in a series of matches, write a Python program using reduce function to 
+find who is the better player of the two in terms of maintaining consistency. (You need to find SD).
+
+CODE:
+import functools 
+import operator
+p1=[45,81,39]
+p2=[24,89,12]
+av1=functools.reduce(operator.add,p1) 
+av2=functools.reduce(operator.add,p2) 
+av1=av1/2
+av2=av2/2
+print("Player1" if av1>av2 else "player2") 
+print("\n")
+
+OUTPUT:
+Player1
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 8:
+Map+reduce+filter
+Given two trending topics and a bunch of tweets, write a Python program to count the number of tweets 
+that contain each topic. You need to do this by putting together map(), reduce() and filter() functions.
+
+CODE:
+import functools
+q=functools.reduce(lambda x,y: x+y, map(lambda x: x+x, filter (lambda x: (x<=4),[1,2,3,4 ,7]))) 
+print(q)
+
+OUTPUT:
+20
+RESULT:
+Thus, the given program is executed successfully.

@@ -1,0 +1,74 @@
+QUESTION 1:
+EX-6: NETWORK PROGRAMMING
+Create Simple Client Server Application using TCP Socket where server issue a command 
+which will be executed at the client slide as a process of remote command execution.
+
+CODE:
+#TCP Server 
+import socket
+if name == " main 
+": ip = "127.0.0.1"
+port = 1234
+server = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+server.bind((ip,port))
+server.listen(5) 
+while True:
+client,address = server.accept() 
+print("Got connection from",address) 
+string = input("Enter String: ") 
+client.send(bytes(string, "utf-8")) 
+client.close()
+#TCP Client 
+import socket
+if name == " main 
+": ip = "127.0.0.1"
+port = 1234
+server = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+server.connect((ip,port))
+string = server.recv(1024)
+string = string.decode("utf-8") 
+print(string)
+server.close()
+
+
+
+QUESTION 2:
+Write a Socket-based Python server program that responds to client messages as follows: 
+When it receives a message from a client, it simply converts the message into all uppercase 
+letters and sends back the same to the client. Write both client and server programs 
+demonstrating this.
+
+CODE:
+#simple TCP Server 
+import socket
+if name == " main 
+": ip = "127.0.0.1"
+port = 1234
+server = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+server.bind((ip,port))
+server.listen(5) 
+while True:
+client,address = server.accept() 
+print("Got connection from",address) 
+string = client.recv(1024)
+string = string.decode("utf-8")
+print("Data received from the client ",string) 
+string = string.upper()
+print("Sending data back to the client ",string) 
+client.send(bytes(string, "utf-8")) 
+client.close()
+#TCP Client 
+import socket
+if name == " main 
+": ip = "127.0.0.1"
+port = 1234
+server = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+server.connect((ip,port))
+string = input("Enter String: ") 
+server.send(bytes(string, "utf-8")) 
+print("Data has been sent to the server... ") 
+print("Data received from the server") 
+string = server.recv(1024)
+string = string.decode("utf-8") 
+print(string)
+server.close()

@@ -1,0 +1,180 @@
+QUESTION 1:
+EX-7: CONCURRENT PROGRAMMING
+In computing, the producer-consumer problem (also known as the bounded-buffer 
+problem) is a classic example of a multi-process synchronization problem. The problem 
+describes two processes, the producer and the consumer, which share a common, fixed-size 
+buffer used as a queue.
+● The producer’s job is to generate data, put it into the buffer, and start again.
+● At the same time, the consumer is consuming the data (i.e. removing it from 
+the buffer), one piece at a time.
+Problem
+To make sure that the producer won’t try to add data into the buffer if it’s full and that the 
+consumer won’t try to remove data from an empty buffer.
+Solution
+The producer is to either go to sleep or discard data if the buffer is full. The next time the 
+consumer removes an item from the buffer, it notifies the producer, who starts to fill the 
+buffer again. In the same way, the consumer can go to sleep if it finds the buffer to be empty. 
+The next time the producer puts data into the buffer, it wakes up the sleeping consumer.
+
+CODE:
+import threading 
+import time 
+items=[]
+items_cv=threading.Condition() 
+def prod():
+print("I'm the producer") 
+for i in range(30):
+with items_cv: 
+items.append(i) 
+items_cv.notify()
+time.sleep(1) 
+def consumer():
+print("I'm a consumer",threading.current_thread().name) 
+while True:
+with items_cv: 
+while not items:
+items_cv.wait() 
+x = items.pop(0)
+print(threading.current_thread().name,"got",x) 
+time.sleep(5)
+con=[threading.Thread(target=consumer) 
+for i in range(10)]
+for co in con: 
+co.daemon=True 
+co.start()
+prod()
+
+OUTPUT:
+I'm a consumer I'm a consumerThread-1 (consumer) 
+I'm a consumer Thread-2 (consumer)
+I'm a consumerI'm a consumerThread-3 (consumer)
+Thread-5 (consumer)I'm a consumerI'm a consumer Thread-4 (consumer)Thread-7 (consumer) 
+I'm a consumer
+Thread-10 (consumer) got 9 
+Thread-1 (consumer) got 10 
+Thread-2 (consumer) got 11 
+Thread-3 (consumer) got 12 
+Thread-5 (consumer) got 13 
+Thread-7 (consumer) got 14 
+Thread-4 (consumer) got 15 
+Thread-6 (consumer) got 16 
+Thread-8 (consumer) got 17
+Thread-9 (consumer) got 18 
+Thread-10 (consumer) got 19 
+Thread-1 (consumer) got 20 
+Thread-2 (consumer) got 21 
+Thread-3 (consumer) got 22 
+Thread-5 (consumer) got 23 
+Thread-7 (consumer) got 24 
+Thread-4 (consumer) got 25 
+Thread-6 (consumer) got 26 
+Thread-8 (consumer) got 27 
+Thread-9 (consumer) got 28 
+Thread-10 (consumer) got 29 
+RESULT:
+Thus, the given program is executed successfully.
+
+
+
+QUESTION 2:
+Problem Statement – We have a buffer of fixed size. A producer can produce an item and 
+can place in the buffer. A consumer can pick items and can consume them. We need to 
+ensure that when a producer is placing an item in the buffer, then at the same time 
+consumer should not consume any item. In this problem, buffer is the critical section.
+To solve this problem, we need two counting semaphores – Full and Empty. “Full” keeps 
+track of number of items in the buffer at any given time and “Empty” keeps track of number 
+of unoccupied slots.
+
+CODE:
+import threading 
+import time 
+Cap=10
+buf=[-1 for i in range(Cap)] 
+inind=0
+outind=0
+mutex=threading.Semaphore() 
+empty=threading.Semaphore(Cap) 
+full=threading.Semaphore(0)
+class Producer(threading.Thread): 
+def run(self):
+global Cap, buf, inind, outind 
+global mutex, empty, full 
+items_produced = 0
+counter = 0
+while items_produced < 20: 
+empty.acquire() 
+mutex.acquire()
+counter += 1 
+buf[inind] = counter
+inind = (inind + 1)%Cap 
+print(f"Producer produced:{counter}") 
+mutex.release()
+full.release() 
+time.sleep(1) 
+items_produced += 1
+class Consumer(threading.Thread): 
+def run(self):
+global Cap, buf, inind, outind, counter 
+global mutex, empty, full 
+items_consumed = 0
+while items_consumed < 20: 
+full.acquire() 
+mutex.acquire()
+item = buf[outind]
+outind = (outind + 1)%Cap
+print(f"Consumer consumed item:{item}") 
+mutex.release()
+empty.release() 
+time.sleep(2.5) 
+items_consumed += 1
+producer=Producer() 
+consumer=Consumer() 
+consumer.start() 
+producer.start() 
+producer.join() 
+consumer.join() 
+
+
+OUTPUT:
+Producer produced:1 
+Consumer consumed item:1 
+Producer produced:2 
+Producer produced:3 
+Consumer consumed item:2 
+Producer produced:4 
+Producer produced:5 
+Consumer consumed item:3 
+Producer produced:6 
+Producer produced:7 
+Producer produced:8 
+Consumer consumed item:4 
+Producer produced:9 
+Producer produced:10 
+Consumer consumed item:5 
+Producer produced:11 
+Producer produced:12 
+Producer produced:13
+Consumer consumed item:6 
+Producer produced:14 
+Producer produced:15 
+Consumer consumed item:7 
+Producer produced:16 
+Producer produced:17 
+Consumer consumed item:8 
+Producer produced:18 
+Consumer consumed item:9 
+Producer produced:19 
+Consumer consumed item:10 
+Producer produced:20 
+Consumer consumed item:11 
+Consumer consumed item:12 
+Consumer consumed item:13 
+Consumer consumed item:14 
+Consumer consumed item:15 
+Consumer consumed item:16 
+Consumer consumed item:17 
+Consumer consumed item:18 
+Consumer consumed item:19 
+Consumer consumed item:20 
+RESULT:
+Thus, the given program is executed successfully

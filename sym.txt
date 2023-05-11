@@ -1,0 +1,143 @@
+Solve the following using symbolic paradigm:
+
+i. Calculate sqrt (2) with 100 decimals.
+
+CODE:
+from sympy import * 
+print(N(sqrt(2),100))
+
+OUTPUT:
+1.41421356237309504880168872420969807856967187537694807317667973799073247846210703885038753
+4327641573
+
+
+ii. Calculate (1/2+1/3) in rational arithmetic.
+
+CODE:
+import sympy as sym
+a = (sym.Rational(1, 2)+sym.Rational(1,3)) 
+print(sym.simplify(a))
+
+OUTPUT:
+5/6
+
+
+iii. Calculate the expanded form of (x+y) ^ 6.
+
+CODE:
+import sympy as sym 
+x = sym.Symbol('x') 
+y = sym.Symbol('y')
+a = sym.expand((x+y)**6) 
+print(a)
+OUTPUT:
+x**6 + 6*x**5*y + 15*x**4*y**2 + 20*x**3*y**3 + 15*x**2*y**4 + 6*x*y**5 + y**6
+
+
+iv. Simplify the trigonometric expression sin (x) / cos (x)
+
+CODE:
+from sympy import * 
+x = symbols('x')
+a = (sin(x)/(cos(x))) 
+s=trigsimp(a) 
+print(format(s))
+OUTPUT:
+tan(x)
+
+
+v. Calculate sin x -xx^3n
+
+CODE:
+from sympy import * 
+x,n=symbols('x n') 
+exp= sin(x)-x*x**3*n 
+s=trigsimp(exp) 
+print(s)
+
+OUTPUT:
+-n*x**4 + sin(x)
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 2:
+Develop a python code for to carry out the operations on the given algebraic manipulation for
+the given expression a2 −ab+ab−b2=a2−b2 by using the symbolic programming paradigms principles.
+
+CODE:
+import sympy as sym 
+a = sym.Symbol('a') 
+b = sym.Symbol('b')
+lhs=sym.simplify(a**2-a*b+a*b-b**2) 
+rhs=sym.simplify(a**2-b**2) 
+print('lhs is ',lhs)
+print('rhs is ',rhs)
+OUTPUT:
+lhsis a**2 - b**2 
+rhsis a**2 - b**2 
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 3:
+Give the Symbolic program for the expression given below:
+
+a. ∬ a 2 da
+
+CODE:
+from sympy import * 
+import functools 
+import operator 
+import random 
+a=symbols('a') 
+g=a**2 
+j=integrate(g,a)
+print('before integration a**2') 
+print('after integration '+str(j))
+OUTPUT:
+before integration a**2 
+after integration a**3/3
+
+
+b. 2x+y 2
+
+CODE:
+import sympy as sym 
+x = sym.Symbol('x') 
+y = sym.Symbol('y')
+a = sym.simplify(2*x+y**2) 
+print(a)
+
+OUTPUT:
+2*x + y**2 
+
+
+c. 1/10 + 1/5 
+
+CODE:
+import sympy as sym
+a = (sym.Rational(1, 10)+sym.Rational(1,5)) 
+print(sym.simplify(a))
+
+OUTPUT:
+3/10
+
+
+d. d/dx(sin(x))
+
+CODE:
+from sympy import * 
+import functools 
+import operator 
+import random 
+a=symbols('a') 
+x=symbols('x') 
+g=sin(x)
+j=diff(g,a)
+print('before differentiation sin(x)') 
+print('after differentiation '+str(j))
+
+OUTPUT:
+before differentiation sin(x) 
+after differentiation 0

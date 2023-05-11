@@ -1,0 +1,298 @@
+QUESTION 1:
+EX-3: OBJECT ORIENTED PROGRAMMING
+AIM: Write a Python class named SRMIST with six attributes school, dept1, 
+dept2, dept2 and dept3. Add a new attribute specialization and display the 
+entire attribute and their values of the said class. Now remove the dept1
+and dept2 attribute and display the entire attribute with values.
+
+CODE:
+class SRMIST: 
+school='SRMIST KTR' 
+dept1='CS' 
+dept2='CHEM' 
+dept3='IOT' 
+dept4='ECE'
+SRMIST.specialisation='BIG DATA' 
+var=SRMIST()
+print(var.school) 
+print(var.dept1) 
+print(var.dept2) 
+print(var.dept3) 
+print(var.dept4) 
+print(var.specialisation) 
+delattr(SRMIST,'dept1') 
+delattr(SRMIST,'dept2')
+print("After deleting two attributes:") 
+print(var.school)
+print(var.dept3) 
+print(var.dept4) 
+print(var.specialisation) 
+
+OUTPUT:
+SRMIST KTR
+CS 
+CHEM 
+IOT 
+ECE
+BIG DATA
+After deleting two attributes:
+SRMIST KTR 
+IOT
+ECE
+BIG DATA
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 2:
+AIM: Write a Python program to crate four empty classes, CTECH, 
+CINTEL, NWC and DSBS. Now create some instances and check 
+whether they are instances of the said classes or not. Also, check whether 
+the said classes are subclasses of the built-in object class or not.
+
+CODE:
+from ast import Pass
+class CTECH: 
+pass
+class CINTEL: 
+pass
+class NWC: 
+pass
+class DSBS: 
+pass
+o1=CTECH()
+o2=CINTEL() 
+o3=NWC() 
+o4=DSBS()
+print(“Instance:”) 
+print(isinstance(o1,CTECH)) 
+print(isinstance(o2,CINTEL)) 
+print(isinstance(o4,NWC)) 
+print(isinstance(o3,NWC)) 
+print(isinstance(o4,DSBS)) 
+print(“Subclass:”) 
+print(issubclass(CTECH,object)) 
+print(issubclass(CINTEL,object)) 
+print(issubclass(NWC,object)) 
+print(issubclass(DSBS,object)) 
+
+OUTPUT:
+Instance:
+True 
+True 
+False 
+True 
+True 
+Subclass:
+True 
+True 
+True 
+True
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 3:
+AIM: Write a program to print the names of the departments students by 
+creating a Dept class. If no name is passed while creating an object of the 
+Dept class, then the name should be “SCO”, otherwise the name should 
+be equal to the String value passed while creating the object of the Dept 
+class.
+
+CODE:
+class Dept:
+def _init_(self, *args): 
+if len(args) == 1:
+self.dept=args[0]
+elif len(args) == 0:
+self.dept="ECE"
+def deptname(self): 
+print(self.dept)
+d1=Dept() 
+d1.deptname() 
+d2=Dept("EEE")
+d2.deptname()
+
+OUTPUT:
+ECE 
+EEE
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 4:
+AIM: Create a class named ‘Rectangle’ with two data members- length and 
+breadth and a function to calculate the area which is ‘length*breadth’. The 
+class has three constructors which are:
+1 - having no parameter - values of both length and breadth are assigned
+zero.
+2 - having two numbers as parameters - the two numbers are assigned
+as length and breadth respectively.
+3 - having one number as parameter - both length and breadth
+are assigned that number.
+Now, create objects of the ‘Rectangle’ class having none, one and two 
+parameters and print their areas.
+
+CODE:
+class rectangle: 
+l=0
+b=0
+def init (self,*args): 
+if len(args)==2:
+self.l=args[0] 
+self.b=args[1] 
+elif len(args)==1: 
+self.l=args[0] 
+self.b=args[0]
+else:
+self.l=0 
+self.b=0
+def area(self):
+return self.l*self.b; 
+r1=rectangle(2,1) 
+print(r1.area()) 
+r2=rectangle(50) 
+print(r2.area()) 
+r3=rectangle() 
+print(r3.area()) 
+OUTPUT:
+2
+2500
+0
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 5:
+AIM: Create a class named ‘PrintDT’ to print various numbers of different 
+datatypes by creating different functions with the same name 
+‘python_data’ having a parameter for each datatype. (example:tuple, list, 
+string)
+
+CODE:
+class PrintDT:
+def init (self,name,age): 
+self.name=name 
+self.age=age 
+print(name,age)
+def python_data(self,hello): 
+self.hello=[]
+print(hello)
+def python_data(self,hi): 
+self.hi=hi
+print(hi)
+def python_data(self,t): 
+self.t=t
+print(t)
+def python_data(self,h): 
+self.h=h
+print(h) 
+bob=PrintDT("Student",18)
+bob.python_data([11,22,33]) 
+bob.python_data("AG") 
+bob.python_data(("Carrot","Mango", "Orange")) 
+
+OUTPUT:
+Student 18
+[11, 22, 33] 
+AG
+('Carrot', 'Mango', 'Orange')
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 6:
+AIM: A student from SRMIST has his/her money deposited Rs.15000, Rs.30000 and Rs. 40,000 in banks-CUB, 
+HDFC and Indian Bank respectively. We have to print the money deposited by him/her in a particular bank.
+Create a class named 'Banks_SRMIST' with a function 'getBalance' which returns 0. Make its three subclasses 
+named 'CUB', 'HDFC' and 'Indian_Bank' with a function with the same name 'getBalance' which returns the 
+amount deposited in that particular bank. Call the function 'getBalance' by the object of each of the three banks.
+
+CODE:
+class Banks_SRMIST: 
+def getBalance():
+return 0
+class CUB(Banks_SRMIST): 
+def getBalance(balance):
+return balance
+class HDFC(Banks_SRMIST): 
+def getBalance(balance):
+return balance
+class Indian_Bank(Banks_SRMIST): 
+def getBalance(balance):
+return balance 
+Banks_SRMIST() 
+print(CUB.getBalance(1000))
+print(HDFC.getBalance(2000)) 
+print(Indian_Bank.getBalance(3000)) 
+
+OUTPUT:
+1000
+2000
+3000
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 7:
+AIM: Create a Time class and initialize it with hours and minutes.
+1. Make a method addTime which should take two time object and add them. E.g.- (2 hour and 50 min)+(1 hr
+and 20 min) is (4 hr and 10 min)
+2. Make a method displayTime which should print the time.
+3. Make a method DisplayMinute which should display the total minutes in the Time. E.g.- (1 hr 2 min) 
+should display 62 minute.
+
+CODE:
+class Time():
+def init (self, hours, mins): 
+self.hours = hours
+self.mins = mins 
+def addTime(t1, t2): 
+t3 = Time(0,0)
+if t1.mins+t2.mins > 60:
+t3.hours = (t1.mins+t2.mins)//60 
+t3.hours = t3.hours+t1.hours+t2.hours 
+t3.mins = (t1.mins + t2.mins) % 60
+return t3
+def displayTime(self):
+print("Time is",self.hours,"hours and",self.mins,"minutes.") 
+def displayMinute(self):
+print ((self.hours*60)+self.mins)
+a = Time(1,10) 
+b = Time(2,20)
+c = Time.addTime(a,b) 
+c.displayTime() 
+c.displayMinute() 
+
+OUTPUT:
+Time is 3 hours and 30 minutes. 
+210
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 8:
+AIM:Write a program to print the area and perimeter of a triangle having sides of 3, 4 and 5 units by creating a 
+class named 'Triangle' with a function to print the area and perimeter.
+
+CODE:
+class Triangle:
+def findPerimeter(self,s1,s2,s3): 
+return (s1+s2+s3)
+def findArea(self,s1,s2,s3): 
+s=(s1+s2+s3)/2
+return ((s*(s-s1)*(s-s2)*(s-s3))**0.5) 
+s1=float(input("Enter first side of the triangle:")) 
+s2=float(input("Enter second side of the triangle:")) 
+s3=float(input("Enter third side of the triangle:")) 
+u=Triangle()
+print("Perimeter of the triangle:{0:.2f}".format(u.findPerimeter(s1,s2,s3))) 
+print("Area of the triangle is:{0:.2f}".format(u.findArea(s1,s2,s3))) 
+
+OUTPUT:
+Enter first side of the triangle:4 
+Enter second side of the triangle:8 
+Enter third side of the triangle:10
+Perimeter of the triangle:22.00 
+Area of the triangle is:15.20
+RESULT: Thus, the given program is executed successfully

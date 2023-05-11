@@ -1,0 +1,159 @@
+QUESTION 1:
+EX-8: PARALLEL PROGRAMMING
+The Dining Philosopher Problem – The Dining Philosopher Problem states that K 
+philosophers seated around a circular table with one chopstick between each pair of 
+philosophers. There is one chopstick between each philosopher. A philosopher may eat if he 
+can pick up the two chopsticks adjacent to him. One chopstick may be picked up by any one 
+of its adjacent followers but not both.
+There are three states of philosopher: THINKING, HUNGRY and EATING. Here there
+are two semaphores: Mutex and a semaphore array for the philosophers. Mutex is used such 
+that no two philosophers may access the pickup or putdown at the same time. The array is 
+used to control the behavior of each philosopher. But semaphores can result in deadlock due 
+to programming errors.
+
+CODE:
+import threading 
+import random 
+import time
+class Philosopher(threading.Thread): 
+running = True
+def init (self, index, forkOnLeft, forkOnRight): 
+threading.Thread. init (self)
+self.index = index 
+self.forkOnLeft = forkOnLeft 
+self.forkOnRight = forkOnRight
+def run(self): 
+while(self.running):
+time.sleep(30)
+print (f'Philosopher {self.index} is hungry.') 
+self.dine()
+def dine(self):
+fork1, fork2 = self.forkOnLeft, self.forkOnRight
+while self.running: 
+fork1.acquire()
+locked = fork2.acquire(False) 
+if locked: break 
+fork1.release()
+print (f'Philosopher {self.index} swaps forks.') 
+fork1, fork2 = fork2, fork1
+else:
+return 
+self.dining() 
+fork2.release() 
+fork1.release()
+def dining(self):
+print (f'Philosopher {self.index} starts eating.') 
+time.sleep(30)
+print (f'Philosopher {self.index} finishes eating and leaves to think.') 
+def main():
+forks = [threading.Semaphore() for n in range(5)] 
+philosophers= [Philosopher(i, forks[i%5], forks[(i+1)%5])
+for i in range(5)] 
+Philosopher.running = True 
+for p in philosophers: p.start() 
+time.sleep(100) 
+Philosopher.running = False 
+print ("Now we are finishing.")
+if name == "
+main ": main()
+
+OUTPUT:
+Philosopher 3 is hungry.Philosopher 0 is hungry.Philosopher 2 is hungry. 
+Philosopher 1 is hungry.
+Philosopher 4 is hungry.
+Philosopher 1 swaps forks.
+Philosopher 2 starts eating.Philosopher 4 swaps forks.
+Philosopher 0 starts eating.
+Philosopher 2 finishes eating and leaves to think.
+Philosopher 0 finishes eating and leaves to think.Philosopher 3 starts eating. 
+Philosopher 1 swaps forks.
+Philosopher 4 swaps forks.
+Philosopher 1 starts eating. 
+Philosopher 0 is hungry.
+Philosopher 3 finishes eating and leaves to think.Philosopher 2 is hungry.Philosopher 1 finishes eating and leaves 
+to think.
+Philosopher 0 swaps forks.
+Philosopher 4 starts eating. 
+Philosopher 2 starts eating. 
+Philosopher 0 swaps forks.
+Now we are finishing. 
+Philosopher 1 is hungry. 
+Philosopher 3 is hungry.
+Philosopher 4 finishes eating and leaves to think.Philosopher 2 finishes eating and leaves to think.
+Philosopher 0 starts eating.
+Philosopher 0 finishes eating and leaves to think.
+RESULT:
+Thus, the given program is executed successfully.
+
+
+
+QUESTION 2:
+Consider a situation where we have a file shared between many people.
+● If one of the people tries editing the file, no other person should be reading or
+writing at the same time, otherwise changes will not be visible to him/her.
+● However if some person is reading the file, then others may read it at the same
+time. Precisely in OS we call this situation as the readers-writers problem
+Problem parameters:
+● One set of data is shared among a number of processes
+● Once a writer is ready, it performs its write. Only one writer may write at a time
+● If a process is writing, no other process can read it
+● If at least one reader is reading, no other process can write
+● Readers may not write and only read
+
+CODE:
+import threading as thread 
+import random
+global x 
+x = 0
+lock = thread.Lock() 
+def Reader():
+global x
+print('\nReader is Reading!') 
+lock.acquire() 
+print(f'\nShared Data:{x}') 
+lock.release()
+print() 
+def Writer():
+global x
+print('\nWriter is Writing!') 
+lock.acquire()
+x += 1
+print('Writer is Releasing the lock!') 
+lock.release()
+print()
+if name == '
+main ': for i in 
+range(0, 10):
+randomNumber = random.randint(0, 100) 
+if(randomNumber > 50):
+t1 = thread.Thread(target = Reader) 
+t1.start()
+else:
+t2 = thread.Thread(target = Writer) 
+t2.start()
+t1.join()
+t2.join()
+
+OUTPUT:
+Reader is Reading!
+Shared Data:0 
+Reader is Reading!
+Writer is Writing!
+Writer is Releasing the lock!
+Reader is Reading!
+Reader is Reading!
+Writer is Writing! 
+Reader is Reading! 
+Shared Data:1 
+Writer is Writing! 
+Reader is Reading! 
+Reader is Reading!
+Shared Data:1
+Shared Data:1
+Shared Data:1
+Writer is Releasing the lock!
+Writer is Releasing the lock!
+Shared Data:3
+Shared Data:3
+RESULT:
+Thus, the given program is executed successfully.

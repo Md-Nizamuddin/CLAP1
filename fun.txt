@@ -1,0 +1,297 @@
+QUESTION 1:
+EX-9: FUNCTIONAL PROGRAMMING
+Write a Python program to create Fibonacci series up to n using Lambda.
+
+CODE:
+def fibonacci(count):
+listA=[0,1]
+any(map(lambda _:listA.append(sum(listA[-2:])),range(2, count))) 
+return listA[:count]
+n=int(input()) 
+print(fibonacci(n)) 
+
+OUTPUT:
+5
+[0, 1, 1, 2, 3]
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 2:
+Write a Python program to find the numbers of a given string and store them in a 
+list, display the numbers which are bigger than the length of the list in sorted form. 
+Use lambda function to solve the problem.
+
+CODE:
+str1 = "SOC 23 CTech 5 DSBS8 NWC 56 CINtel 20 5"
+print("Original string:",str1) 
+str_num=[i for i in str1.split(' ')] 
+lenght=len(str_num)
+numbers=sorted([int(x) for x in str_num if x.isdigit()]) 
+print('Numbers in sorted form:')
+for i in ((filter(lambda x:x>lenght,numbers))): 
+print(i,end=' ')
+
+OUTPUT:
+Original string: SOC 23 CTech 5 DSBS8 NWC 56 CINtel 20 5 
+Numbers in sorted form:
+20 23 56
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 3:
+Write a Python program to sort a given list of strings(numbers) numerically using 
+lambda.
+
+CODE:
+def sort_numeric_strings(nums_str):
+result = sorted(nums_str, key=lambda el: int(el)) 
+return result
+nums_str=['40','20','50','47','30','-10','-20','115','100']
+print("Original list:") 
+print(nums_str)
+print("Sort the said list of strings(numbers) numerically:") 
+print(sort_numeric_strings(nums_str))
+
+OUTPUT:
+Original list:
+['40', '20', '50', '47', '30', '-10', '-20', '115', '100']
+Sort the said list of strings(numbers) numerically:
+['-20', '-10', '20', '30', '40', '47', '50', '100', '115']
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 4:
+Write a Python program to calculate the average value of the numbers in a given 
+tuple of tuples using lambda.
+
+CODE:
+def average_tuple(nums):
+result = tuple(map(lambda x: sum(x) / float(len(x)), zip(*nums))) 
+return result
+nums = ((1,1,1),(3,4,5),(8,7,9),(10,20,30))
+print("Original Tuple:") 
+print(nums)
+print("Average value of the numbers of the said tuple of tuples:\n",average_tuple(nums))
+
+OUTPUT:
+Original Tuple:
+((1, 1, 1), (3, 4, 5), (8, 7, 9), (10, 20, 30))
+Average value of the numbers of the said tuple of tuples: 
+(5.5, 8.0, 11.25)
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 5:
+Write a Python program to find the nested lists elements, which are present in 
+another list using lambda.
+
+CODE:
+def intersection_nested_lists(l1, l2):
+result = [list(filter(lambda x: x in l1, sublist)) for sublist in l2] 
+return result
+nums1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+nums2 = [[12, 18, 23, 25, 45], [7, 11, 19, 24, 28], [1, 5, 8, 18, 15, 16]]
+print("Original lists:") 
+print(nums1) 
+print(nums2)
+print("Intersection of said nested lists:") 
+print(intersection_nested_lists(nums1, nums2))
+
+OUTPUT:
+Original lists:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+[[12, 18, 23, 25, 45], [7, 11, 19, 24, 28], [1, 5, 8, 18, 15, 16]]
+Intersection of said nested lists:
+[[12], [7, 11], [1, 5, 8]]
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 6:
+Write a Python program to convert a given list of strings into list of lists using map 
+function.
+
+CODE:
+def strings_to_listOflists(str): 
+result=map(list, str)
+return list(result) 
+colors=["Red","Blue","Orange"] 
+print('Original list of strings:') 
+print(colors)
+print("Convert the said list of strings into list of lists:") 
+print(strings_to_listOflists(colors))
+
+OUTPUT:
+Original list ofstrings:
+['Red', 'Blue', 'Orange']
+Convert the said list of strings into list of lists: 
+[['R', 'e', 'd'], ['B', 'l', 'u', 'e'], ['O', 'r', 'a', 'n', 'g', 'e']] 
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 7:
+Write a Python program to convert all the characters in uppercase and lowercase 
+and eliminate duplicate letters from a given sequence. Use map() function.
+
+CODE:
+def change_cases(s):
+return str(s).upper(), str(s).lower()
+chrars={'a','b','C','d','a','e','f','G','a'}
+print("Original Characters:\n",chrars) 
+result=map(change_cases, chrars)
+print("After converting above characters in upper and lower cases\nand eliminating duplicate letters:") 
+print(set(result))
+
+OUTPUT:
+Original Characters:
+{'C', 'a', 'e', 'G', 'd', 'b', 'f'}
+After converting above characters in upper and lower cases 
+and eliminating duplicate letters:
+{('B', 'b'), ('C', 'c'), ('F', 'f'), ('G', 'g'), ('E', 'e'), ('A', 'a'), ('D', 'd')}
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 8:
+Write a Python program to add two given lists and find the difference between lists. 
+Use map() function.
+
+CODE:
+def addition_subtrction(x, y): 
+return x + y, x - y
+nums1=[80,70,60,50] 
+nums2=[40,30,20,10]
+print("Original lists:") 
+print(nums1)
+print(nums2)
+result=map(addition_subtrction, nums1, nums2) 
+print("Result:")
+print(list(result))
+
+OUTPUT:
+Original lists:
+[80, 70, 60, 50]
+[40, 30, 20, 10]
+Result:
+[(120, 40), (100, 40), (80, 40), (60, 40)]
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 9:
+Write a Python program to add two given lists and find the difference between lists. 
+Use map() function.
+
+CODE:
+def addition_subtrction(x, y): 
+return x + y, x - y
+nums1=[80,70,60,50] 
+nums2=[40,30,20,10]
+print("Original lists:") 
+print(nums1) 
+print(nums2)
+result=map(addition_subtrction, nums1, nums2) 
+print("Result:")
+print(list(result))
+
+OUTPUT:
+Original lists: 
+[80, 70, 60, 50]
+[40, 30, 20, 10]
+Result:
+[(120, 40), (100, 40), (80, 40), (60, 40)]
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 10:
+Filter the array, and return a new array with only the values equal to or above 18 ( 
+consider filter function)
+
+CODE:
+def fun(variable):
+letters = ['a', 'e', 'i', 'o', 'u'] 
+if (variable in letters):
+return True 
+else:
+return False
+sequence = ['g', 'e', 'e', 'j', 'k', 's', 'p', 'r'] 
+filtered=filter(fun, sequence) 
+print('The filtered letters are:')
+for s in filtered: 
+print(s)
+
+OUTPUT:
+The filtered letters are:
+e 
+e
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 11:
+Write a Python program to filter only vowels from given sequence.
+
+CODE:
+def vowel(c): 
+newstr = c
+vowels = ['a', 'e', 'i', 'o', 'u'] 
+for x in c.lower():
+if x not in vowels:
+newstr = newstr.replace(x,"") 
+return newstr
+seq='geejkspr' 
+print(vowel(seq)) 
+
+OUTPUT:
+ee
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 12:
+Write a Python program to calculate sum of numbers from the list and maximum 
+element from the list (use reduce function)
+
+CODE:
+from functools import reduce 
+def sum(a, b):
+print(f"a={a},b={b},{a}+{b}={a+b}") 
+return a + b
+scores = [75, 65, 80, 95, 50]
+total = reduce(sum, scores) 
+print(total)
+
+OUTPUT: 
+a=75,b=65,75+65=140 
+a=140,b=80,140+80=220 
+a=220,b=95,220+95=315
+a=315,b=50,315+50=365 
+365
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 13:
+Write a python program to calculate factorial of given number (use reduce 
+function)
+
+CODE:
+import functools 
+def mult(x,y):
+print(f"x={x} y={y}") 
+return x*y
+fact=functools.reduce(mult, range(1, 4)) 
+print(f'Factorial of 3:{fact}') 
+
+OUTPUT:
+x=1 y=2 
+x=2 y=3
+Factorial of 3:6
+RESULT:
+Thus, the given program is executed successfully

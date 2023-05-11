@@ -1,0 +1,385 @@
+DFA: 
+QUESTION 1:
+Write a automata code for the Language that accepts all and only those strings that 
+contain 001
+
+CODE:
+from automata.fa.dfa import DFA 
+dfa = DFA(
+states={'q0', 'q1', 'q2', 'q3'}, 
+input_symbols={'0', '1'},
+transitions={
+'q0': {'0': 'q1', '1': 'q0'},
+'q1': {'0': 'q2', '1': 'q0'},
+'q2': {'0': 'q2', '1': 'q3'},
+'q3': {'0': 'q3', '1': 'q3'}
+},
+initial_state='q0', 
+final_states={'q3'}
+)
+for i in range(1,4):
+num = input("Enter the string :") 
+if(dfa.accepts_input(num)):
+print("Accepted") 
+else:
+print("Rejected")
+
+OUTPUT:
+Enter the string :1001 
+Accepted
+Enter the string :010101 
+Rejected
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 2:
+Write a automata code for L(M) ={ w | w has an even number of 1s}
+
+CODE:
+from automata.fa.dfa import DFA 
+dfa = DFA(
+states={'q0', 'q1', 'q2'},
+input_symbols={'0', '1'}, 
+transitions={
+'q0': {'0': 'q0', '1': 'q1'},
+'q1': {'0': 'q1', '1': 'q2'},
+'q2': {'0': 'q2', '1': 'q1'}
+},
+initial_state='q0', 
+final_states={'q2'}
+)
+for i in range(1,4):
+num = input("Enter the string :") 
+if(dfa.accepts_input(num)):
+print("Accepted") 
+else:
+print("Rejected")
+
+OUTPUT:
+Enter the string :10101 
+Rejected
+Enter the string :10010 
+Accepted
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 3:
+Write a automata code for L(M) ={0,1}*
+
+CODE:
+from automata.fa.dfa import DFA 
+dfa = DFA(
+states={'q0'}, 
+input_symbols={'0', '1'},
+transitions={
+'q0': {'0': 'q0', '1': 'q0'}
+},
+initial_state='q0', 
+final_states={'q0'}
+)
+for i in range(1,8):
+num = input("Enter the string :") 
+if(dfa.accepts_input(num)):
+print("Accepted")
+else:
+print("Rejected")
+
+OUTPUT:
+Enter the string :101 
+Accepted
+Enter the string :001 
+Accepted
+Enter the string :720 
+Rejected
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 4:
+Write a automata code for L(M)=a + aa*b.
+
+CODE:
+from automata.fa.dfa import DFA 
+dfa = DFA(
+states={'q0', 'q1', 'q2','q3','q4','q5'}, 
+input_symbols={'a', 'b'},
+transitions={
+'q0': {'a': 'q1', 'b': 'q5'},
+'q1': {'a': 'q2', 'b': 'q5'},
+'q2': {'a': 'q3', 'b': 'q4'},
+'q3': {'a': 'q2', 'b': 'q5'},
+'q4': {'a': 'q5', 'b': 'q5'},
+'q5': {'a': 'q5', 'b': 'q5'}
+},
+initial_state='q0', 
+final_states={'q1','q4'}
+)
+for i in range(1,6):
+num = input("Enter the string :") 
+if(dfa.accepts_input(num)):
+print("Accepted") 
+else:
+print("Rejected")
+
+OUTPUT:
+Enter the string :a 
+Accepted
+Enter the string :aab 
+Accepted
+Enter the string :aaab
+Rejected
+Enter the string :abab 
+Rejected
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 5:
+Write a automata code for L(M)={(ab) n | n N}
+
+CODE:
+from automata.fa.dfa import DFA 
+dfa = DFA(
+states={'q0', 'q1', 'q2','q3'}, 
+input_symbols={'a', 'b'},
+transitions={
+'q0': {'a': 'q1', 'b': 'q3'},
+'q1': {'a': 'q3', 'b': 'q2'},
+'q2': {'a': 'q1', 'b': 'q3'},
+'q3': {'a': 'q3', 'b': 'q3'},
+},
+initial_state='q0', 
+final_states={'q2'}
+)
+for i in range(1,6):
+num = input("Enter the string :") 
+if(dfa.accepts_input(num)):
+print("Accepted") 
+else:
+print("Rejected")
+
+OUTPUT:
+Enter the string :ab 
+Accepted
+Enter the string :baba 
+Rejected
+Enter the string :aaabbb 
+Rejected
+Enter the string :abab 
+Accepted
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 6:
+Write a automata code for Let Σ = {0, 1}. 
+
+
+Given DFAs for {}, {ε}, Σ * , and Σ + .
+6.1 { } -- (null set):
+
+CODE:
+from automata.fa.dfa import DFA
+# DFA which does not accept any input
+dfa = DFA(
+states={'q0', 'q1'},
+in 
+input_symbols={'0', 
+'1'}, transitions={
+'q0': {'0': 'q0', '1': 'q0'},
+'q1': {'0': 'q1', '1': 'q1'}
+},
+initial_state='q0'
+,
+final_states={'q 
+1'}
+)
+for i in range(1,8):
+num = input("Enter the string
+:")
+if(nfa.accepts_input(num)): 
+print("Accepted
+") else:
+print("Rejected")
+
+OUTPUT:
+Enter the string :101 
+Rejected
+Enter the string :100
+
+
+6.3 Rejected
+. { ε} -- Accepts only null character:
+
+CODE:
+from automata.fa.dfa import DFA
+# DFA which does not accept any input
+dfa = DFA(
+states={'q0', 'q1'}, 
+input_symbols={'0', 
+'1'}, transitions={
+'q0': {'0': 'q1', '1': 'q1'},
+'q1': {'0': 'q1', '1': 'q1'}
+},
+initial_state='q0'
+,
+final_states={'q 
+0'}
+)
+for i in range(1,6):
+num = input("Enter the string :") 
+if(dfa.accepts_input(num)):
+print("Accepted")
+
+OUTPUT:
+else:
+print("Rejected")
+Enter the string :10 
+Rejected
+Enter the string :111
+Rejected
+Enter the string :
+Accepted
+RESULT:
+Thus, the given program is executed successfully.
+
+
+1. Σ * -- accepts all combinations of ‘1’ and ‘0’ including nullstring:
+
+CODE:
+from automata.fa.dfa import DFA
+# DFA which does not accept any input
+dfa = DFA(
+states={'q0'}, 
+input_symbols={'0', 
+'1'}, transitions={
+'q0': {'0': 'q0', '1': 'q0'}
+},
+initial_state='q0 
+',
+final_states={'q0 
+'}
+)
+for i in range(1,8):
+num = input("Enter the string
+:")
+if(dfa.accepts_input(num)): 
+print("Accepted
+") else: 
+print("Rejected")
+
+OUTPUT:
+Enter the string :101 
+Accepted
+Enter the string :1111 
+Accepted
+Enter the string :34 
+Rejected 
+RESULT:
+Thus, the given program is executed successfull
+
+
+6.4. Σ + -- accepts all combinations of ‘1’ and ‘0’ excluding null string:
+CODE:
+from automata.fa.dfa import DFA
+# DFA which does not accept any input 
+dfa = DFA(
+states={'q0', 'q1'}, 
+input_symbols={'0', 
+'1'}, transitions={
+'q0': {'0': 'q1', '1': 'q1'},
+'q1': {'0': 'q1', '1': 'q1'}
+},
+initial_state='q0'
+,
+final_states={'q 
+1'}
+)
+for i in range(1,8):
+num = input("Enter the string
+:")
+if(dfa.accepts_input(num)): 
+print("Accepted
+") else:
+print("Rejected")
+
+OUTPUT:
+Enter the string :101 
+Accepted
+Enter the string :111 
+Accepted
+Enter the string : 
+Rejected
+
+
+NFA:
+
+QUESTION 1:
+Write a automata code for the Language that accepts all end with 01
+
+CODE:
+from automata.fa.nfa import NFA
+# NFA which accepts strings that ends with '01' 
+nfa = NFA(
+states={'q0', 'q1', 'q2'},
+input_symbols={'0', '1'}, 
+transitions={
+'q0': {'0': {'q1', 'q0'}, '1': {'q0'}},
+'q1': {'1': {'q2'}}, 
+'q2': {}
+},
+initial_state='q0', 
+final_states={'q2'}
+)
+for i in range(1,4):
+num = input("Enter the string :") 
+if (nfa.accepts_input(num)):
+print("Accepted")
+else:
+print("Rejected")
+OUTPUT:
+Enter the string :1001 
+Accepted
+Enter the string :1010 
+Rejected
+RESULT:
+Thus, the given program is executed successfully.
+
+
+QUESTION 2:
+Write a automata code for L(M)= a + aa*b + a*b.
+
+CODE:
+from automata.fa.nfa import NFA
+# NFA which accepts strings that ends with '01' 
+nfa = NFA(
+states={'q0', 'q1', 'q2','q3','q4'},
+input_symbols={'a', 'b'}, 
+transitions={
+'q0': {'a': {'q1', 'q2'}},
+'q1': {'a': {'q2','q4'},'b':{'q4'}},
+'q2': {'a': {'q2'},'b':{'q3'}}, 
+'q3': {},
+'q4': {}
+},
+initial_state='q0', 
+final_states={'q1','q3'}
+)
+for i in range(1,6):
+num = input("Enter the string :") 
+if (nfa.accepts_input(num)):
+print("Accepted") 
+else:
+print("Rejected")
+
+OTPUT:
+Enter the string :a 
+Accepted
+Enter the string :aab 
+Accepted
+Enter the string :baba 
+Rejected
+RESULT:
+Thus, the given program is executed successfully
